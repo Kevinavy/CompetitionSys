@@ -1,7 +1,8 @@
-package com.kevinavy.competitionsys.security.model;
+package com.kevinavy.competitionsys.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.kevinavy.competitionsys.model.vo.UserVo;
 
 import java.sql.Timestamp;
 
@@ -11,11 +12,38 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+    private String name;
+    private String clazz;
+    private String institute;
     private Timestamp lastLoginTime;
     private Timestamp createTime;
     private Timestamp updateTime;
     private Integer isDelete;
     private Integer isLocked;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    public String getInstitute() {
+        return institute;
+    }
+
+    public void setInstitute(String institute) {
+        this.institute = institute;
+    }
 
     public Integer getId() {
         return id;
@@ -79,5 +107,16 @@ public class User {
 
     public void setIsLocked(Integer isLocked) {
         this.isLocked = isLocked;
+    }
+
+    public User(UserVo userVo) {
+        this.username = userVo.getUsername();
+        this.password = userVo.getPassword();
+        this.name = userVo.getName();
+        this.clazz = userVo.getClazz();
+        this.institute = userVo.getInstitute();
+    }
+
+    public User() {
     }
 }

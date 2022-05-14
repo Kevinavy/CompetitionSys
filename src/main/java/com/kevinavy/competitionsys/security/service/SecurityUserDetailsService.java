@@ -1,4 +1,4 @@
-package com.kevinavy.competitionsys.security.service.intf;
+package com.kevinavy.competitionsys.security.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 

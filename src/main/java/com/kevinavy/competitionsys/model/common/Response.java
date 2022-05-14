@@ -1,4 +1,6 @@
-package com.kevinavy.competitionsys.model.response;
+package com.kevinavy.competitionsys.model.common;
+
+import com.kevinavy.competitionsys.constant.enums.ResponseCode;
 
 public class Response {
     private Boolean success;
@@ -29,6 +31,13 @@ public class Response {
         this.data = data;
     }
 
+    public Response(ResponseCode responseCode, String msg, Object data) {
+        this.success = responseCode.getSuccess();
+        this.code = responseCode.getCode();
+        this.msg = msg;
+        this.data = data;
+    }
+
     public static Response success() {
         return new Response(ResponseCode.SUCCESS);
     }
@@ -37,8 +46,8 @@ public class Response {
         return new Response(ResponseCode.SUCCESS, data);
     }
 
-    public static Response success(String successMsg) {
-        return new Response(ResponseCode.SUCCESS, successMsg);
+    public static Response success(String successMsg, Object data) {
+        return new Response(ResponseCode.SUCCESS, successMsg, data);
     }
 
     public static Response error() {
@@ -61,16 +70,32 @@ public class Response {
         return new Response(responseCode);
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
+
     public void setSuccess(Boolean success) {
         this.success = success;
+    }
+
+    public Integer getCode() {
+        return code;
     }
 
     public void setCode(Integer code) {
         this.code = code;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public Object getData() {
+        return data;
     }
 
     public void setData(Object data) {

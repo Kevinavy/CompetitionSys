@@ -1,12 +1,11 @@
 package com.kevinavy.competitionsys.security.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kevinavy.competitionsys.security.model.Permission;
-import com.kevinavy.competitionsys.security.model.Role;
-import com.kevinavy.competitionsys.security.model.User;
+import com.kevinavy.competitionsys.model.po.Permission;
+import com.kevinavy.competitionsys.model.po.Role;
+import com.kevinavy.competitionsys.model.po.User;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public interface SecurityUserMapper extends BaseMapper<User> {
             "  JOIN user E ON E.id = D.user_id " +
             "WHERE" +
             "  E.username = #{username}")
-    List<Permission> findPermissionByUsername(String username);
+    List<Permission> findPermissionsByUsername(String username);
 
     @Update("UPDATE user" +
             "SET " +

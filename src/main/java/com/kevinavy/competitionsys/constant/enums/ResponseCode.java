@@ -1,10 +1,10 @@
-package com.kevinavy.competitionsys.model.response;
+package com.kevinavy.competitionsys.constant.enums;
 
 public enum ResponseCode {
     SUCCESS(true,200, "请求成功"),
     LOGOUT(true,201, "登出成功"),
     ERROR(false,400, "未知错误"),
-    UNAUTHORIZED(false, 401, "未授权的用户"),
+    UNAUTHORIZED(false, 401, "用户认证失败"),
     FORBIDDEN(false, 402, "用户权限不足");
 
 

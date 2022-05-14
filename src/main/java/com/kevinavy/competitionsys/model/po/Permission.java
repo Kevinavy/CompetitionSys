@@ -1,11 +1,15 @@
-package com.kevinavy.competitionsys.security.model;
+package com.kevinavy.competitionsys.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.io.Serializable;
+
 @TableName("permission")
-public class Permission {
+public class Permission implements Serializable {
+    private static final long serialVersionUID = -761838916267826597L;
+
     @TableId
     private Integer id;
     private Integer permissionCode;

@@ -1,4 +1,4 @@
-package com.kevinavy.competitionsys.security.model;
+package com.kevinavy.competitionsys.model.po;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;

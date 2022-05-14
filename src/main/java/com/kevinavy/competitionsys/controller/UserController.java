@@ -1,13 +1,10 @@
 package com.kevinavy.competitionsys.controller;
 
-import com.kevinavy.competitionsys.model.response.Response;
-import com.kevinavy.competitionsys.service.impl.UserServiceImpl;
-import com.kevinavy.competitionsys.service.intf.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.kevinavy.competitionsys.model.common.Response;
+import com.kevinavy.competitionsys.model.vo.UserVo;
+import com.kevinavy.competitionsys.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -16,26 +13,33 @@ import javax.annotation.Resource;
 public class UserController {
 
     @Resource
-    UserServiceImpl userService;
+    UserService userService;
 
     @PostMapping("/register")
-    public Response register(String username, String password) {
-        return userService.register(username, password);
+    public Response register(@RequestBody UserVo user) {
+        return userService.register(user);
     }
 
-    @RequestMapping("/hello")
-    public String test() {
-        return "Response.success()";
+    @PostMapping("/login")
+    public Response login(@RequestBody UserVo user) {
+        return userService.login(user);
     }
 
-//    @PostMapping("/login")
-//    public Response login() {
-//
-//    }
-//
-//    @PostMapping("/logout")
-//    public Response login() {
-//
-//    }
+    @PostMapping("/logout")
+    public Response login() {
+        return userService.logout();
+    }
+
+    @PostMapping("/delete")
+    @PreAuthorize("hasAuthority('sys:user:delete')")
+    public Response deleteUser(@RequestBody UserVo user) {
+        return userService.deleteUser(user);
+    }
+
+    @PostMapping("/update")
+    @PreAuthorize("hasAuthority('sys:user:update')")
+    public Response updateUser(@RequestBody UserVo user) {
+        return userService.updateUser(user);
+    }
 
 }

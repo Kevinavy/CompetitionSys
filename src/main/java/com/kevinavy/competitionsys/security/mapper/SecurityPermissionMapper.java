@@ -1,7 +1,7 @@
 package com.kevinavy.competitionsys.security.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kevinavy.competitionsys.security.model.Permission;
+import com.kevinavy.competitionsys.model.po.Permission;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

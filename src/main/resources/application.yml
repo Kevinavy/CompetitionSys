@@ -2,6 +2,7 @@ spring:
   profiles:
     active: dev
 
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto

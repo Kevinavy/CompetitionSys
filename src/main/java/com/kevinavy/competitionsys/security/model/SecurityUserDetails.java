@@ -1,16 +1,34 @@
 package com.kevinavy.competitionsys.security.model;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.kevinavy.competitionsys.model.po.Permission;
+import com.kevinavy.competitionsys.model.po.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class SecurityUserDetails implements UserDetails {
     private User user;
 
+    private List<Permission> permissions;
+    @JSONField(serialize = false)
+    private List<GrantedAuthority> authorities;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        if (CollectionUtils.isEmpty(authorities)) {
+            // todo 函数式编程
+            authorities = new ArrayList<>();
+            for (Permission permission : permissions) {
+                authorities.add(new SimpleGrantedAuthority(permission.getPermissionCode().toString()));
+            }
+        }
+        return authorities;
     }
 
     @Override
@@ -49,6 +67,19 @@ public class SecurityUserDetails implements UserDetails {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public SecurityUserDetails(User user, List<Permission> permissions) {
+        this.user = user;
+        this.permissions = permissions;
     }
 
     public SecurityUserDetails(User user) {
